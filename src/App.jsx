@@ -1,10 +1,19 @@
-import React from 'react'
-
+import { Routes, Route } from 'react-router-dom'
+import Body from './components/Body'
+import LoginPage from './components/LoginPage'
+import BrowsePage from './components/BrowsePage'
+import AppLayout from './components/AppLayout'
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Netflix GPT</h1>
-    </div>
+      <Routes>
+        <Route path="/" element={<AppLayout />} >
+         <Route index element = {<Body />} />
+         <Route path ="login" element = {<LoginPage />} />
+         <Route path ="browse" element = {<BrowsePage />} />
+         </Route>
+      </Routes>
+   
+
   )
 }
 
