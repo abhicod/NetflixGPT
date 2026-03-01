@@ -1,8 +1,16 @@
 import { BODY_BG_IMG } from "../utils/constants";
 import { useRef, useState } from "react";
 import { validateLoginData } from "../utils/validate";
-import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
+import photo from "../assets/photo.jpeg";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -11,7 +19,12 @@ const LoginPage = () => {
   const password = useRef();
   const fullName = useRef();
 
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const handleSignIn = () => {
+    setError("");
     setIsSignIn(!isSignIn);
   };
   const handleValidate = () => {
@@ -37,30 +50,55 @@ const LoginPage = () => {
     if (validationError) return;
 
     if (!isSignIn) {
-      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
           console.log(user);
+          updateProfile(user, {
+            displayName: fullName.current.value,
+            photoURL: photo ,
+          })
+            .then(() => {
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                }),
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setError(errorCode + " " + errorMessage);
+          setError("Email already exists , Use a different email");
         });
     } else {
-        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user);
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setError(errorCode + " " + errorMessage);
-  });
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError("User Not Found - Please Sign Up");
+        });
     }
   };
 
@@ -108,7 +146,8 @@ const LoginPage = () => {
                 {error && <p className="text-red-500 text-[15px]">{error}</p>}
               </div>
 
-              <button type="button"
+              <button
+                type="button"
                 className="bg-red-600 text-white font-lg text-xl py-2 px-5 w-full  rounded-lg flex items-center justify-center gap-1 hover:bg-red-700 transition-all duration-300 cursor-pointer"
                 onClick={handleValidate}
               >
@@ -127,7 +166,8 @@ const LoginPage = () => {
                     ? "New to Netflix?"
                     : "You already have an account."}
                 </span>
-                <button type="button"
+                <button
+                  type="button"
                   className="text-white font-semibold hover:text-red-600 transition-all duration-100 cursor-pointer"
                   onClick={handleSignIn}
                 >

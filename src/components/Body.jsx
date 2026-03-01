@@ -2,6 +2,8 @@ import React from 'react'
 import { BODY_BG_IMG } from '../utils/constants';
 import { ChevronRightIcon } from 'lucide-react';
 const Body = () => {
+
+  
   return (
     <div>
         <div className='relative'>
