@@ -8,7 +8,9 @@ import  appStore from './utils/appStore'
 createRoot(document.getElementById('root')).render(
  <Provider store={appStore}>
     <BrowserRouter>
+   
     <App />
+    
  </BrowserRouter>
  </Provider>
 )

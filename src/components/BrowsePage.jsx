@@ -1,8 +1,17 @@
-import React from 'react'
+import useNowPlayingMovies from "../customHooks/useNowPlayingMovies";
+import MainBrowseContainer from "./MainBrowseContainer";
+import SecondaryBrowseContainer from "./SecondaryBrowseContainer";
 
 const BrowsePage = () => {
+  useNowPlayingMovies();
+  
   return (
-    <div>BrowsePage</div>
+    <div>
+      <div className="w-full">
+      <MainBrowseContainer />
+      <SecondaryBrowseContainer />
+      </div>
+    </div>
   )
 }
 
