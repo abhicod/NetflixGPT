@@ -7,13 +7,13 @@ const MainBrowseContainer = () => {
     // console.log(movies);
 
     if(!movies) return;
-  console.log(movies);
+  // console.log(movies);
     const mainMovie = movies[Math.floor(Math.random() * movies.length)];
    
 
   return (
     <div>
-        <div className='h-screen relative'>
+        <div className='h-screen relative z-10'>
             <VideoTitle movie={mainMovie}/>
             <VideoBackground movieId={mainMovie.id}/>
         </div>

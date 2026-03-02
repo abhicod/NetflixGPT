@@ -1,9 +1,11 @@
 import useNowPlayingMovies from "../customHooks/useNowPlayingMovies";
 import MainBrowseContainer from "./MainBrowseContainer";
 import SecondaryBrowseContainer from "./SecondaryBrowseContainer";
+import usePopularMovies from "../customHooks/usePopularMovies";
 
 const BrowsePage = () => {
   useNowPlayingMovies();
+  usePopularMovies();
   
   return (
     <div>
@@ -15,4 +17,4 @@ const BrowsePage = () => {
   )
 }
 
-export default BrowsePage
+export default BrowsePage;
