@@ -20,8 +20,8 @@ const Header = () => {
   };
 
   return (
-    <div className=" px-35 py-5 absolute w-full z-10 bg-black/40 shadow-2xl ">
-      <div className="flex justify-between items-center">
+    <div className={user ? "px-25 pt-5 pb-2 absolute w-full z-50 bg-linear-to-b from-black to-transparent shadow-2xl" :" px-35 py-5 absolute w-full z-50 bg-black/40 shadow-2xl bg-linear-to-b from-black to-transparent"}>
+      <div className="flex justify-between items-center  ">
         <Link to={user ? "/browse" : "/"}>
           <img
             className="w-40 hover:scale-102 transition-all duration-100 cursor-pointer"

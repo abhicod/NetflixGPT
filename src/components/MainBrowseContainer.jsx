@@ -7,9 +7,9 @@ const MainBrowseContainer = () => {
     // console.log(movies);
 
     if(!movies) return;
-
-    const mainMovie = movies[0];
-    // console.log(mainMovie);
+  console.log(movies);
+    const mainMovie = movies[Math.floor(Math.random() * movies.length)];
+   
 
   return (
     <div>
