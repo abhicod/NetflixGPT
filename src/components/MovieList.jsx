@@ -12,7 +12,7 @@ const MovieList = ({ title, movies }) => {
       <div className="pb-10">
        <div className="flex justify-between items-center px-10">
          <h1 className="font-bold text-3xl pb-2 text-white">{title}</h1>
-         <button className="px-10 py-2 text-white rounded-lg">See All &gt; </button>
+         <button className="px-5 py-2 text-white rounded-lg">See All &gt; </button>
        </div>
         <div className="px-2 ">
           <div className="flex gap-6 overflow-x-scroll p-5">
