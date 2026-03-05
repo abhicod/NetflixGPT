@@ -42,6 +42,7 @@ const Header = () => {
             className="w-40 hover:scale-102 transition-all duration-100 cursor-pointer"
             src={HEADER_LOGO}
             alt="netflix logo"
+            title="log out to go to homepage"
           />
         </Link>
         <div>

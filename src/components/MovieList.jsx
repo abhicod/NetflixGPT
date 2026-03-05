@@ -15,7 +15,7 @@ const MovieList = ({ title, movies }) => {
          <button className="px-5 py-2 text-white rounded-lg">See All &gt; </button>
        </div>
         <div className="px-2 ">
-          <div className="flex gap-6 overflow-x-scroll p-5">
+          <div className="flex gap-6 overflow-x-scroll p-5 scrollbar-hide">
             {movies.map((movie) => (
             <MovieCard key={movie.id} path={movie.poster_path} />
           ))}
