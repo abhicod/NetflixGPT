@@ -1,4 +1,5 @@
-import { ChevronRightIcon } from "lucide-react";
+// 
+
 import React, { useRef } from "react";
 import langConstants from "../utils/langConstants";
 import { useSelector } from "react-redux";
@@ -17,10 +18,9 @@ const GPTSearchBar = () => {
       "https://api.themoviedb.org/3/search/movie?query=" +
         movieName +
         "&include_adult=false&language=en-US&page=1",
-      API_OPTIONS,
+      API_OPTIONS
     );
     const json = await data.json();
-    // console.log(json);
     return json.results;
   };
 
@@ -43,38 +43,37 @@ const GPTSearchBar = () => {
     }
 
     const gptResponse = response.output_text.split(",");
-    console.log(gptResponse);
 
     const data = await Promise.all(
-      gptResponse.map((movie) => searchMoviesTMDB(movie)),
+      gptResponse.map((movie) => searchMoviesTMDB(movie))
     );
-    console.log(data);
 
     dispatch(addGPTMovies({ movieNames: gptResponse, movieResults: data }));
   };
 
   return (
-    <>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <div className="flex justify-center items-center w-full">
-          <div className="flex w-1/2 gap-2 m-1">
-            <input
-              ref={searchText}
-              className="w-3/4 py-3 px-5 rounded-lg border border-gray-300 focus:outline-none bg-black/60 placeholder:text-gray-300 focus:text-white focus:border-white focus:ring-2 focus:ring-red-700 "
-              type="text"
-              placeholder={langConstants[langKey].gptSearchPlaceholder}
-            />
-            <button
-              type="submit"
-              onClick={handleGPTSearchBar}
-              className="w-1/4 py-3 px-4 bg-red-600 text-white font-lg text-xl  rounded-lg flex items-center justify-center gap-1 hover:bg-red-700 transition-all duration-300 cursor-pointer"
-            >
-              {langConstants[langKey].search}{" "}
-            </button>
-          </div>
+    <form onSubmit={(e) => e.preventDefault()} className="w-full">
+      <div className="flex justify-center items-center w-full px-4 sm:px-6 md:px-8 lg:px-12 py-4 sm:py-6 md:py-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-4xl">
+          {/* Input Field */}
+          <input
+            ref={searchText}
+            className="w-full sm:flex-1 px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 rounded-lg border border-gray-600 hover:border-gray-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-700/50 bg-black/60 text-sm sm:text-base md:text-lg text-white placeholder:text-gray-400 transition-all duration-200"
+            type="text"
+            placeholder={langConstants[langKey].gptSearchPlaceholder}
+          />
+
+          {/* Search Button */}
+          <button
+            type="submit"
+            onClick={handleGPTSearchBar}
+            className="w-full sm:w-auto bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-semibold px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer text-sm sm:text-base md:text-lg whitespace-nowrap shadow-lg hover:shadow-red-500/50"
+          >
+            {langConstants[langKey].search}
+          </button>
         </div>
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 

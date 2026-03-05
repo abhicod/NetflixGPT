@@ -110,8 +110,8 @@ const LoginPage = () => {
           src={BODY_BG_IMG}
           alt="body background"
         />
-        <div className="w-full h-screen absolute top-0 left-0 bg-black/70 flex justify-center items-center">
-          <div className=" bg-black/70 h-1-/12 w-2/8 p-10 rounded-xl">
+        <div className="w-full h-screen absolute top-0 left-0 bg-black/70 flex justify-center items-center p-4 sm:p-6 md:p-8">
+          <div className="bg-black/70 w-full max-w-md sm:max-w-lg md:max-w-xl p-6 sm:p-8 md:p-10 rounded-xl">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -119,7 +119,7 @@ const LoginPage = () => {
               action=""
               className="h-full w-full"
             >
-              <h1 className="text-white text-2xl font-bold">
+              <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-bold">
                 {isSignIn ? "Log In" : "Sign Up"}
               </h1>
               <div className="flex flex-col gap-4 py-5">
@@ -128,39 +128,39 @@ const LoginPage = () => {
                     type="text"
                     ref={fullName}
                     placeholder="Enter Your Full Name"
-                    className="bg-gray-700/70 rounded-lg p-3 text-gray-200 focus:outline-none focus:ring-1 focus:ring-white focus:text-white placeholder:text-sm text-md"
+                    className="w-full bg-gray-700/70 rounded-lg p-3 sm:p-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:text-white placeholder:text-sm sm:text-base transition-all duration-200"
                   />
                 )}
                 <input
                   type="text"
                   ref={email}
                   placeholder="Enter Your Email or phone number"
-                  className="bg-gray-700/70 rounded-lg p-3 text-gray-200 focus:outline-none focus:ring-1 focus:ring-white focus:text-white placeholder:text-sm text-md"
+                  className="w-full bg-gray-700/70 rounded-lg p-3 sm:p-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:text-white placeholder:text-sm sm:text-base transition-all duration-200"
                 />
                 <input
                   type="password"
                   ref={password}
                   placeholder="Enter Your Password"
-                  className="bg-gray-700/70 rounded-lg p-3 text-gray-200 focus:outline-none focus:ring-1 focus:ring-white focus:text-white placeholder:text-sm text-md"
+                  className="w-full bg-gray-700/70 rounded-lg p-3 sm:p-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:text-white placeholder:text-sm sm:text-base transition-all duration-200"
                 />
-                {error && <p className="text-red-500 text-[15px]">{error}</p>}
+                {error && <p className="text-red-500 text-sm sm:text-base">{error}</p>}
               </div>
 
               <button
                 type="button"
-                className="bg-red-600 text-white font-lg text-xl py-2 px-5 w-full  rounded-lg flex items-center justify-center gap-1 hover:bg-red-700 transition-all duration-300 cursor-pointer"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-lg sm:text-xl py-3 sm:py-4 px-6 sm:px-8 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer"
                 onClick={handleValidate}
               >
                 {isSignIn ? "Log In" : "Sign Up"}
               </button>
-              <div className="flex items-center justify-between py-1">
-                <div className="flex items-center gap-1 py-2">
-                  <input type="checkbox" />
-                  <label className="text-white">Remember me</label>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 py-3 sm:py-4">
+                <div className="flex items-center gap-2">
+                  <input type="checkbox" className="w-4 h-4" />
+                  <label className="text-white text-sm sm:text-base">Remember me</label>
                 </div>
-                <p className="text-white">Need help?</p>
+                <p className="text-white text-sm sm:text-base hover:underline cursor-pointer">Need help?</p>
               </div>
-              <div className="text-sm flex gap-2 py-2">
+              <div className="text-sm sm:text-base flex flex-col sm:flex-row gap-1 sm:gap-2 py-3">
                 <span className="text-gray-500">
                   {isSignIn
                     ? "New to Netflix?"
@@ -168,18 +168,18 @@ const LoginPage = () => {
                 </span>
                 <button
                   type="button"
-                  className="text-white font-semibold hover:text-red-600 transition-all duration-100 cursor-pointer"
+                  className="text-white font-semibold hover:text-red-600 transition-all duration-200 cursor-pointer"
                   onClick={handleSignIn}
                 >
                   {isSignIn ? "Sign up now" : "Log In"}
                 </button>
               </div>
-              <div className="pt-2">
-                <span className="text-sm text-gray-500">
+              <div className="pt-4 text-center">
+                <span className="text-xs sm:text-sm text-gray-500">
                   This page is protected by Google reCAPTCHA to ensure you're
                   not a bot.
                 </span>
-                <span className="text-blue-500 text-sm ml-2 hover:text-blue-600 transition-all duration-200 cursor-pointer">
+                <span className="text-blue-500 text-xs sm:text-sm ml-2 hover:text-blue-600 transition-all duration-200 cursor-pointer">
                   Learn more.
                 </span>
               </div>
